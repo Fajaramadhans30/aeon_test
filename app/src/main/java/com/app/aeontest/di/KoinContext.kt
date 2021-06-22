@@ -1,4 +1,4 @@
-package com.test.kecipirtest.di
+package com.app.aeontest.di
 
 import android.annotation.SuppressLint
 import android.content.Context

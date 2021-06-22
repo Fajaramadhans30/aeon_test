@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-android-extensions'
     id 'kotlin-kapt'
+    id 'realm-android'
 }
 
 android {
@@ -15,6 +16,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -75,6 +77,8 @@ dependencies {
     implementation 'com.xwray:groupie-kotlin-android-extensions:2.7.0'
     implementation 'com.github.Kennyc1012:MultiStateView:2.1.2'
     implementation 'com.github.bumptech.glide:glide:4.11.0'
+    //shimmer
+    implementation 'com.facebook.shimmer:shimmer:0.5.0@aar'
 
     //Anko
     implementation "org.jetbrains.anko:anko:0.10.8"

@@ -29,7 +29,7 @@ val utilityModule = module {
 //    single { StoryPreference(get()) }
 //}
 //
-val productModule = module {
+val listModule = module {
     single {
         RetrofitService.createReactiveService(
             ApiService::class.java,

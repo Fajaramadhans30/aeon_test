@@ -7,7 +7,7 @@ import com.app.aeontest.network.remote.Repository
 
 class DataSource(val api: Api) : Repository {
     override suspend fun getListData(): List<ListModel> {
-        return listOf(api.getList())
+        return api.getList()
     }
 
 }

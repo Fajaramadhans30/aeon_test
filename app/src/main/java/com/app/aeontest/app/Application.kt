@@ -2,7 +2,8 @@ package com.app.aeontest.app
 
 import android.app.Application
 import com.app.aeontest.di.module.serviceModule
-import com.test.kecipirtest.di.KoinContext
+import com.app.aeontest.di.KoinContext
+import com.app.aeontest.di.module.listModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 class Application :Application(){
@@ -15,7 +16,8 @@ class Application :Application(){
             androidContext(this@Application)
             modules(
                 listOf(
-                    serviceModule
+                    serviceModule,
+                    listModule
                 )
             )
         }
