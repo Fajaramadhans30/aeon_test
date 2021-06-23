@@ -89,4 +89,7 @@ dependencies {
 
     //coroutine
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1'
+
+    //whatif
+    implementation "com.github.skydoves:whatif:1.0.4"
 }

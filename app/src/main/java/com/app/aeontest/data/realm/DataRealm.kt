@@ -7,7 +7,8 @@ import io.realm.annotations.RealmClass
 @RealmClass
 open class DataRealm (
     @PrimaryKey
-    var albumId: Int? = null,
+    var parentId: Int? = null,
+    var albumId: String? = null,
     var id: String? = null,
     var title: String? = null,
     var url: String? = null,
