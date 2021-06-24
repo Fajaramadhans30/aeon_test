@@ -15,6 +15,7 @@ import io.realm.Realm
 import io.realm.RealmConfiguration
 import io.realm.RealmResults
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +24,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var realm: Realm
     private lateinit var dataRealm: ArrayList<DataRealm>
     private var listModel: ListModel? = null
+
+//    private var listItemGroupie:ListItemGroupie ? = null
+    var viewState = MultiStateView.ViewState.LOADING
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,7 +39,6 @@ class MainActivity : AppCompatActivity() {
         dataRealm = ArrayList()
         dataRealm.clear()
         getDataFromRealm()
-        addToRealm()
     }
 
     private fun getDataFromRealm() {
@@ -55,6 +58,7 @@ class MainActivity : AppCompatActivity() {
             context = this,
             items =  result
             )
+        msvList.viewState = viewState
         rvList.apply {
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayoutManager.VERTICAL, false)
             adapter = photoListAdapter
@@ -67,24 +71,28 @@ class MainActivity : AppCompatActivity() {
             when (it) {
                 is Resource.Loading -> showLoading()
                 is Resource.Empty -> showEmpty()
-                is Resource.Success -> showContent(it.data)
+                is Resource.Success -> {
+                    msvList.viewState = MultiStateView.ViewState.CONTENT
+                    showContent(it.data)
+                }
                 is Resource.Error -> showError()
             }
         })
     }
 
     private fun showLoading(){
-        MultiStateView.ViewState.LOADING
+        viewState = MultiStateView.ViewState.LOADING
     }
 
     private fun showEmpty() {
-        MultiStateView.ViewState.EMPTY
+        viewState = MultiStateView.ViewState.EMPTY
     }
 
 
     private fun showContent(data: List<ListModel>) {
-        MultiStateView.ViewState.CONTENT
+        viewState = MultiStateView.ViewState.CONTENT
         for (i in data) {
+            addToRealm()
             saveDataToRealm(i.albumId, i.id, i.title, i.url, i.thumbnailUrl)
         }
     }

@@ -46,6 +46,6 @@ class PhotoListAdapter(private val context: Context,
     }
 
     override fun getItemCount(): Int {
-        return 10
+        return items.size
     }
 }
